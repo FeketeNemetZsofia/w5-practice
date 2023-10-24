@@ -1,19 +1,57 @@
-import * as fs from 'node:fs'; // requires package.JSON. ES6 szintktika. npm (node pack manager) init
+console.log("hello")
+document.write("Hello World!")
+const h1Element = document.querySelector('h1')
+h1Element.innerHTML = "Renamed"
+console.log('loaded')
 
-//const fs = require('fs') // common JS szintaktika, nem kell JSON
+const rootElement = document.querySelector("#root")
+console.log(rootElement)
 
-/*
-try {
-  const data = fs.readFileSync('text.txt', 'utf8');
-  console.log(data);
-} catch (err) {
-  console.error('Error reading the file:', err);
-}*/
+/* rootElement.innerHTML = `
+    <h1>hello world</h1>
+    <div>
+        <p>lorem ipsum</p>
+        <h2>subtitle</h2>
+        <button>click me!</button>
+    </div>
+`
 
-fs.readFile('text.txt', 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading the file:', err);
-      return;
+const array = ["kismacska", "kutyus", "zebra", "kecske"] */
+
+/* const jsonLikeArray = [
+    {
+        countryName: "Hungary",
+        population: 8900000
+    },
+    {
+        countryName: "England",
+        population: 18000000
+    },
+    {
+        countryName: "USA",
+        population: 230000000
     }
-    console.log(data);
-  });
+]
+
+for (let i = 0; i < jsonLikeArray.length; i++) {
+    rootElement.innerHTML += `
+        <h3>name: ${jsonLikeArray[i].countryName}</h3>
+        <h4>population: ${jsonLikeArray[i].population}</h4>
+    `
+} */
+
+fetch("https://restcountries.com/v3.1/all") // elküldjük adatért a JS-t, visszatér valamikor adattal
+    .then((res) => res.json()) // megjött az adat, de ki kell csomagolni, visszatér valamikor a kicsomagolt adattal
+    .then((data) => {
+        console.log(data)
+
+        for (let i = 0; i <data.length; i++) {
+            console.log(data[i].name.common)
+            console.log(data[i].population)
+
+            rootElement.innerHTML += `
+                <h3>country name: ${data[i].name.common}</h3>
+                <h4>country population: ${data[i].population}</h4>
+            `
+        }
+    }) // megjött a kicsomagolt adat, innentől használhatjuk
