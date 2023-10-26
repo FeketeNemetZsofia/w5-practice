@@ -1,8 +1,30 @@
-div#root {
-    font-style: italic;
-    color: blueviolet;
+html {
+    background-color: rgb(186, 217, 178);
+    font-family: 'Montserrat', sans-serif;
 }
 
-html {
-    background-color:rgb(188, 174, 202);
+div#root {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+div.country {
+    border: 2px solid black;
+    text-align: center;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    padding: 20px;
+}
+
+h2, h3 {
+    width: fit-content;
+    margin: 0;
 }
