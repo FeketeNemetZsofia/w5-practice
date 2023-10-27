@@ -28,3 +28,8 @@ h2, h3 {
     width: fit-content;
     margin: 0;
 }
+
+div:nth-child(5n - 4).country.clicked {
+    border: 2px solid pink ;
+    color: pink;
+}
