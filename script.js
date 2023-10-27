@@ -3,13 +3,11 @@ console.log('loaded')
 const rootElement = document.querySelector("#root")
 console.dir(rootElement)
 
-
 const fetchUrl = async (url) => {
     const response = await fetch(url)
     const data = await response.json()
     return data
 }
-
 
 const countryComponent = (country) => `
     <div class="country">
@@ -18,19 +16,23 @@ const countryComponent = (country) => `
     </div>
 `
 
-/*async function init() { // felkészítjük a js-t, hogy a függvényben lesznek aszinkron kódok
-    const response = await fetch("https://restcountries.com/v3.1/all") // megvárjuk a fetch válaszát (promise helyett)
-    const data = await response.json() // megvárjuk, hogy a response megjöjjön (promise helyett) -> itt lesz elérhető az adatunk
+async function init() { // felkészítjük a js-t, hogy a függvényben lesznek aszinkron kódok
+    const data = await fetchUrl("https://restcountries.com/v3.1/all")
 
     data.forEach(country => rootElement.insertAdjacentHTML("beforeend", countryComponent(country)))
-}
 
-init()*/
+    /* const countryElement = document.querySelector("div.country")
+    console.log(countryElement)
+    countryElement.addEventListener("click", () => {
+        countryElement.classList.toggle("clicked")
+    }) */
 
-const init = async() => {
-    const finalData = await fetchUrl("https://restcountries.com/v3.1/all")
-    console.log(finalData)
-    finalData.forEach(country => rootElement.insertAdjacentHTML("beforeend", countryComponent(country)))
+    const countryElements = document.querySelectorAll("div.country")
+    countryElements.forEach((countryElement) => {
+        countryElement.addEventListener("click", () => {
+            countryElement.classList.toggle("clicked")
+        })
+    })
 }
 
 init()
